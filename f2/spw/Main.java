@@ -21,16 +21,15 @@ public class Main {
 		layout.setVgap(1);	
 		mutiplayer.setLayout(layout);
 
-		
-		SpaceShip v1 = new SpaceShip(150, 550, 20, 20);
-		GamePanel gp1 = new GamePanel();
-		GameEngine engine1 = new GameEngine(gp1, v1);
-		SpaceShip v2 = new SpaceShip(150, 550, 20, 20);
-		GamePanel gp2 = new GamePanel();
-		GameEngine2 engine2 = new GameEngine2(gp2, v2);
+		SpaceShip ship1 = new SpaceShip(150, 550, 20, 20);
+		GamePanel monitor1 = new GamePanel();
+		GameEngine engine1 = new GameEngine(monitor1, ship1);
+		SpaceShip ship2 = new SpaceShip(150, 550, 20, 20);
+		GamePanel monitor2 = new GamePanel();
+		GameEngine2 engine2 = new GameEngine2(monitor2, ship2);
 
-		mutiplayer.add(gp1);
-		mutiplayer.add(gp2);
+		mutiplayer.add(monitor1);
+		mutiplayer.add(monitor2);
 		frame.addKeyListener(engine1);
 		frame.addKeyListener(engine2);
 		frame.add(mutiplayer, BorderLayout.CENTER);

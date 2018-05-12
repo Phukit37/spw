@@ -12,11 +12,11 @@ import java.util.Iterator;
 import javax.swing.Timer;
 
 
-public class GameEngine implements KeyListener, GameReporter{
+public class GameEngine2 implements KeyListener, GameReporter{
 	GamePanel gp;
 	
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();	
-	private SpaceShip v1;
+	private SpaceShip v;	
 	
 	private Timer timer;
 	
@@ -24,11 +24,11 @@ public class GameEngine implements KeyListener, GameReporter{
 	private double difficulty = 0.1;
 	private int count = 0;
 	
-	public GameEngine(GamePanel gp, SpaceShip v1) {
+	public GameEngine2(GamePanel gp, SpaceShip v) {
 		this.gp = gp;
-		this.v1 = v1;	
+		this.v = v;		
 		
-		gp.sprites.add(v1);
+		gp.sprites.add(v);
 		
 		timer = new Timer(50, new ActionListener() {
 			
@@ -68,7 +68,7 @@ public class GameEngine implements KeyListener, GameReporter{
 		  }
 		gp.updateGameUI(this);
 		
-		Rectangle2D.Double vr = v1.getRectangle();
+		Rectangle2D.Double vr = v.getRectangle();
 		Rectangle2D.Double er;
 		for(Enemy e : enemies){
 			er = e.getRectangle();
@@ -85,13 +85,13 @@ public class GameEngine implements KeyListener, GameReporter{
 	
 	void controlVehicle(KeyEvent e) {
 		switch (e.getKeyCode()) {
-		case KeyEvent.VK_LEFT:
-			v1.move(-1);
+		case KeyEvent.VK_A:
+			v.move(-1);
 			break;
-		case KeyEvent.VK_RIGHT:
-			v1.move(1);
+		case KeyEvent.VK_D:
+			v.move(1);
 			break;
-		case KeyEvent.VK_UP:
+		case KeyEvent.VK_W:
 			difficulty += 0.1;
 			break;
 		}
