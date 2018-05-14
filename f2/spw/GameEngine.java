@@ -1,5 +1,4 @@
 package f2.spw;
-
 import java.util.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,9 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import javax.swing.Timer;
-
 
 public class GameEngine implements KeyListener, GameReporter{
 	GamePanel gp;
@@ -63,7 +60,29 @@ public class GameEngine implements KeyListener, GameReporter{
 			if(!e.isAlive()){
 				e_iter.remove();
 				gp.sprites.remove(e);
-				score += 100;
+				score += countscore();
+				count++;
+				if(count == 0){
+					difficulty =0.1;
+				}
+				if(count == 50){
+					difficulty =0.15;
+				}
+				if(count == 100){
+					difficulty =0.2;
+				}
+				if(count == 150){
+					difficulty =0.25;
+				} 
+				if(count == 250){
+					difficulty =0.3;
+				}
+				if(count == 400){
+					difficulty =0.35;
+				}
+				if(count == 800){
+					difficulty =0.4;
+				} 
 			}
 		  }
 		gp.updateGameUI(this);
@@ -76,6 +95,7 @@ public class GameEngine implements KeyListener, GameReporter{
 				die();
 				return;
 			}
+
 		}
 	}
 	
@@ -85,14 +105,13 @@ public class GameEngine implements KeyListener, GameReporter{
 	
 	void controlVehicle(KeyEvent e) {
 		switch (e.getKeyCode()) {
+
 		case KeyEvent.VK_LEFT:
 			v1.move(-1);
 			break;
+			
 		case KeyEvent.VK_RIGHT:
 			v1.move(1);
-			break;
-		case KeyEvent.VK_UP:
-			difficulty += 0.1;
 			break;
 		}
 	}
@@ -115,5 +134,39 @@ public class GameEngine implements KeyListener, GameReporter{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		//do nothing		
+	}
+
+	public long countscore(){
+		if (difficulty == 0.1){
+			score = 10;
+		}
+
+		if (difficulty == 0.15){
+			score = 20;
+		}
+
+		if (difficulty == 0.2){
+			score = 30;
+		}
+
+		if (difficulty == 0.25){
+			score = 40;
+		}
+		if (difficulty == 0.3){
+			score = 50;
+		}
+
+		if (difficulty == 0.35){
+			score = 60;
+		}
+
+		if (difficulty == 0.4){
+			score = 70;
+		}
+
+		if (difficulty == 0.45){
+			score = 80;
+		}
+		return score;
 	}
 }

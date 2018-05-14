@@ -8,7 +8,6 @@ import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import javax.swing.Timer;
 
 
@@ -21,8 +20,10 @@ public class GameEngine2 implements KeyListener, GameReporter{
 	private Timer timer;
 	
 	private long score = 0;
-	private double difficulty = 0.1;
-	private int count = 0;
+	private double difficulty = 0.1, val = 0;
+	private int count;
+
+
 	
 	public GameEngine2(GamePanel gp, SpaceShip v) {
 		this.gp = gp;
@@ -31,7 +32,6 @@ public class GameEngine2 implements KeyListener, GameReporter{
 		gp.sprites.add(v);
 		
 		timer = new Timer(50, new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				process();
@@ -63,7 +63,29 @@ public class GameEngine2 implements KeyListener, GameReporter{
 			if(!e.isAlive()){
 				e_iter.remove();
 				gp.sprites.remove(e);
-				score += 100;
+				score += countscore();
+				count++;
+				if(count == 0){
+					difficulty =0.1;
+				}
+				if(count == 50){
+					difficulty =0.15;
+				}
+				if(count == 100){
+					difficulty =0.2;
+				}
+				if(count == 150){
+					difficulty =0.25;
+				} 
+				if(count == 250){
+					difficulty =0.3;
+				}
+				if(count == 400){
+					difficulty =0.35;
+				}
+				if(count == 800){
+					difficulty =0.4;
+				} 
 			}
 		  }
 		gp.updateGameUI(this);
@@ -91,9 +113,6 @@ public class GameEngine2 implements KeyListener, GameReporter{
 		case KeyEvent.VK_D:
 			v.move(1);
 			break;
-		case KeyEvent.VK_W:
-			difficulty += 0.1;
-			break;
 		}
 	}
 
@@ -115,5 +134,38 @@ public class GameEngine2 implements KeyListener, GameReporter{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		//do nothing		
+	}
+	public long countscore(){
+		if (difficulty == 0.1){
+			score = 10;
+		}
+
+		if (difficulty == 0.15){
+			score = 20;
+		}
+
+		if (difficulty == 0.2){
+			score = 30;
+		}
+
+		if (difficulty == 0.25){
+			score = 40;
+		}
+		if (difficulty == 0.3){
+			score = 50;
+		}
+
+		if (difficulty == 0.35){
+			score = 60;
+		}
+
+		if (difficulty == 0.4){
+			score = 70;
+		}
+
+		if (difficulty == 0.45){
+			score = 80;
+		}
+		return score;
 	}
 }
